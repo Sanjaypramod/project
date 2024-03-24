@@ -29,6 +29,14 @@ pipeline {
                     sh 'kubectl get node'
                     sh 'kubectl get pods -A'
                     sh 'echo "Mypass123" | base64'
+                    sh 'kubectl apply -f PersistentVolume.yaml'
+                    sh 'kubectl apply -f mysql-service.yaml'
+                    sh 'kubectl apply -f mysql.yaml'
+                    sh 'kubectl apply -f namespace.yaml'
+                    sh 'kubectl apply -f persistentVolumeClaim.yaml'
+                    sh 'kubectl apply -f secret.yaml'
+                    sh 'kubectl apply -f wordpress-deployment.yaml'
+                    sh 'kubectl apply -f wordpress-service.yaml'
                    
                 }
             }
