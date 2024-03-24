@@ -28,6 +28,7 @@ pipeline {
                     sh 'aws eks update-kubeconfig --name sanjay-cluster --region us-west-2'
                     sh 'kubectl get node'
                     sh 'kubectl get pods -A'
+                    sh 'echo "Mypass123" | base64'
                    
                 }
             }
