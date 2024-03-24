@@ -29,6 +29,7 @@ pipeline {
                     // sh 'kubectl apply -f manifest.yaml'
                     sh 'kubectl get node'
                     sh 'kubectl get pods -A'
+                    sh 'pwd'
                    
                 }
             }
