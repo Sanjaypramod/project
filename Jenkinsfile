@@ -10,7 +10,7 @@ pipeline {
 
         stage('Checkout from Git') {
             steps {
-                git branch: 'master', url: 'https://github.com/Sanjaypramod/kubeaudit.git'
+                git branch: 'master', url: 'https://github.com/Sanjaypramod/project.git'
             }
         }
 
@@ -28,11 +28,10 @@ pipeline {
                     sh 'aws eks update-kubeconfig --name sanjay-cluster --region us-west-2'
                     sh 'kubectl get node'
                     sh 'kubectl get pods -A'
-                    sh 'echo "Mypass123" | base64'
-                    sh 'kubectl apply -f PersistentVolume.yaml'
+                    sh 'kubectl apply -f namespace.yaml'
                     sh 'kubectl apply -f mysql-service.yaml'
                     sh 'kubectl apply -f mysql.yaml'
-                    sh 'kubectl apply -f namespace.yaml'
+                    sh 'kubectl apply -f PersistentVolume.yaml'
                     sh 'kubectl apply -f persistentVolumeClaim.yaml'
                     sh 'kubectl apply -f secret.yaml'
                     sh 'kubectl apply -f wordpress-deployment.yaml'
