@@ -26,6 +26,7 @@ pipeline {
                     secretKeyVariable: 'AWS_SECRET_ACCESS_KEY'
                 ]]) {
                     sh 'aws eks update-kubeconfig --name sanjay-cluster --region us-west-2'
+                    sh 'echo -n a9jXkxqxK8MWcCLC3xse3F | base64'
                     sh 'kubectl apply -f Wordpress'
                     sh 'kubectl apply -f DemoSite'
                     sh 'kubectl get node'
