@@ -12,4 +12,4 @@ spec:
       nodePort: 30100
   selector:
     app: demo-wordpress
-  type: NodePort
+  type: LoadBalancer
