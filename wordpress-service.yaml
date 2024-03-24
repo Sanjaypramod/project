@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: demo-wordpress-service
+  namespace: wordpress-app
+  labels:
+    app: demo-wordpress
+spec:
+  ports:
+    - port: 8080
+      targetPort: 80
+      nodePort: 30100
+  selector:
+    app: demo-wordpress
+  type: NodePort

@@ -2,7 +2,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: demo-mysql
-  namespace: demo-wordpress
+  namespace: wordpress-app
   labels:
     app: demo-mysql
 spec:
@@ -18,7 +18,7 @@ spec:
       containers:
         - name: demo-mysql-container
           image: mysql:8
-          imagePullPolicy: IfNotPresent      
+          imagePullPolicy: IfNotPresent
           ports:
             - containerPort: 3306
           resources:
@@ -26,10 +26,8 @@ spec:
               memory: '1Gi'
               cpu: '1'
           volumeMounts:
-            - name: demo-mysql-init
-              mountPath: /docker-entrypoint-initdb.d
             - name: demo-mysql-data
-              mountPath: /var/lib/mysql
+              mountPath: "/var/lib/mysql"
           env:
             - name: MYSQL_DATABASE
               value: wordpress
@@ -37,22 +35,21 @@ spec:
               valueFrom:
                 secretKeyRef:
                   name: wp-secrets
-                  key: MYSQL_ROOT_PASSWORD                 
+                  key: MYSQL_ROOT_PASSWORD
       volumes:
         - name: demo-mysql-init
           configMap:
-            name: demo-mysql-wp-config
-        - name: demo-mysql-data    
+             name: demo-mysql-wp-config
+        - name: demo-mysql-data
           persistentVolumeClaim:
             claimName: demo-mysql-pvc
+
 ---
 apiVersion: v1
 kind: ConfigMap
 metadata:
   name: demo-mysql-wp-config
-  namespace: demo-wordpress
+  namespace: wordpress-app
 data:
   init.sql: |
-    CREATE DATABASE IF NOT EXISTS wordpress;
-
-
+     CREATE DATABASE IF NOT EXISTS wordpress;

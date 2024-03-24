@@ -7,11 +7,11 @@ metadata:
 spec:
   storageClassName: manual
   capacity:
-    storage: 100Mi
+    storage: 1Gi
   accessModes:
     - ReadWriteMany
   hostPath:
-    path: '/shared/demo-mysql-data'
+    path: "/mnt/demo-mysql-data"
 ---
 apiVersion: v1
 kind: PersistentVolume
@@ -22,10 +22,8 @@ metadata:
 spec:
   storageClassName: manual
   capacity:
-    storage: 1Gi
+    storage: 2Gi
   accessModes:
     - ReadWriteMany
   hostPath:
-    path: '/shared/demo-wp-data'
-
-    
+    path: "/mnt/demo-wordpress-pv"
