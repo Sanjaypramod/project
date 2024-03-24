@@ -28,7 +28,7 @@ pipeline {
                     sh 'aws eks update-kubeconfig --name sanjay-cluster --region us-west-2'
                     sh 'kubectl apply -f Wordpress'
                     sh 'kubectl apply -f DemoSite'
-                    sh 'kubectl apply -f CertManager''
+                    sh 'kubectl apply -f CertManager'
                     sh 'kubectl get node'
                     sh 'kubectl get pods -A'
                     sh 'pwd'
